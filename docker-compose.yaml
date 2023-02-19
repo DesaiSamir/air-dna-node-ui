@@ -1,0 +1,21 @@
+version: "3"
+services:
+  tradingapp:
+    build:
+      context: .
+      # target: development
+    ports:
+      - 5000:3000
+      - 3306:3306/tcp
+    volumes:
+      - .:/root
+    networks:
+      - public
+    command:
+      - /root/docker/startup.sh
+networks:
+  public:
+  private:
+volumes:
+  back-notused:
+  db-data:
