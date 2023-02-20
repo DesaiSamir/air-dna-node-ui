@@ -19,5 +19,4 @@ module.exports = {
     base_url_v1: process.env.BASE_URL_V1,
     base_url_v2: process.env.BASE_URL_V2,
     access_token: process.env.ACCESS_TOKEN
-  
 };

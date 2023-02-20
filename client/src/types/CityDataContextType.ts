@@ -1,5 +1,6 @@
 import { propertyFilterType } from "./propertyFilterType"
 import { propertiesType, propertyListType } from "./propertyListType"
+import { propertyManagersType } from "./propertyManagersType"
 import { searchItemType } from "./searchItemType"
 
 
@@ -28,7 +29,7 @@ export type CityDataContextType = {
         items: searchItemType[]
     }
     setSearch: (c: searchItemType) => void 
-    // topPropertyManagers, 
+    topPropertyManagers: [propertyManagersType], 
     onCityNameChanged: (e: object) => void
     
     propertyFilter: propertyFilterType, 

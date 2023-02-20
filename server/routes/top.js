@@ -13,7 +13,7 @@ router.get('/', async function  (req, res, next)  {
         const result = await helper.send(req, res, 'GET', url);
         
         if(result){
-            res.send(result);
+            res.send(result.payload.property_managers);
         } else {
             res.send([])
         }

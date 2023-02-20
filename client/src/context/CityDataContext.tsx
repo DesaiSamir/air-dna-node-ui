@@ -62,6 +62,13 @@ const propertyFilterData = {
         maxOccupancy: 20,
     }
 
+const propertyManagers = {
+    avg_rating: 4.5589255,
+    listings_change: 0.5,
+    name: "Evolve",
+    total_listings: 30,
+    total_reviews: 577
+};
 export const CityDataContext = createContext<CityDataContextType>({
     cityId: 76953,
     setCityId: () =>{},
@@ -88,5 +95,6 @@ export const CityDataContext = createContext<CityDataContextType>({
     filteredProperties: [propertyInfo],
     setFilteredProperties: () => {},
     propertiesLoading: false,
+    topPropertyManagers: [propertyManagers],
 });
 export const useGlobalContext = () => useContext(CityDataContext)

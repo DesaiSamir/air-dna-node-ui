@@ -26,7 +26,7 @@ export default function PropertyList() {
         filteredProperties, selectedProperty, setSelectedProperty, propertiesLoading,
     } = React.useContext(CityDataContext);
     const [currentPage, setCurrentPage] = React.useState(1);
-    const propertiesPerPage = 9;
+    const propertiesPerPage = 18;
 
     const propertyValuesCss = { 
         display: 'flex', 
@@ -42,45 +42,6 @@ export default function PropertyList() {
             backgroundColor: `${mode === 'light' ? 'rgb(0 0 0 / 20%)' : 'rgb(250 250 250 / 20%)'}`,
         }
     };
-
-    const propertyTooltipCss = {
-        '&[data-tooltip]': {
-            position: 'relative',
-        },
-        '&[data-tooltip]:before': {
-            content: '""',
-            display: 'none',
-            position: 'absolute',
-            top: 'calc(100%)',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: 0,
-            height: 0,
-            borderTop: 'none',
-            borderRight: '5px solid transparent',
-            borderBottom: `5px solid ${mode === 'light' ? 'rgb(250 250 250 / 90%)' : 'rgb(0 0 0 / 90%)'}`,
-            borderLeft: '5px solid transparent',
-            zIndex: '1',
-        },
-        '&[data-tooltip]:after': {
-            content: 'attr(data-tooltip)',
-            display: 'none',
-            position: 'absolute',
-            top: 'calc(100% + 5px)',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            padding: '5px',
-            backgroundColor: `${mode === 'light' ? 'rgb(250 250 250 / 90%)' : 'rgb(0 0 0 / 90%)'}`,
-            border: `2px solid ${mode === 'light' ? 'rgb(0 0 0 / 90%)' : 'rgb(250 250 250 / 90%)'}`,
-            fontSize: '12px',
-            whiteSpace: 'nowrap',
-            borderRadius: '4px',
-            zIndex: '1',
-        },
-        '&[data-tooltip]:hover:before, &[data-tooltip]:hover:after': {
-            display: 'block',
-        },
-    }
 
     const handlePageChange = (pageNumber: number) => {
       setCurrentPage(pageNumber);
@@ -141,7 +102,7 @@ export default function PropertyList() {
                                 sx={{ 
                                     '--Card-radius': (theme) => theme.vars.radius.sm, 
                                     boxShadow: 'none', 
-                                    height: '300px',
+                                    height: '400px',
                                     padding: '0px',
                                     border: selectedProperty === property ? '5px solid skyblue' : 'none',
                                 }}
@@ -173,7 +134,7 @@ export default function PropertyList() {
                                         </Link>
                                         <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', marginTop:'5px'}}>
                                             <Tooltip title="Yearly Revenue" arrow variant="solid">
-                                                <Box sx={{...propertyValuesCss, ...propertyTooltipCss }} data-tooltip="Yearly Revenue">
+                                                <Box sx={propertyValuesCss}>
                                                     <MoneyIcon />
                                                     <span style={{ marginLeft: '5px', }}>{property.revenue ? toLocaleString(property.revenue) : 0}</span>
                                                 </Box>
@@ -186,7 +147,7 @@ export default function PropertyList() {
                                                     rel="noopener noreferrer" 
                                                     underline='none'
                                                 >
-                                                    <Box sx={{...propertyValuesCss, ...propertyTooltipCss, cursor: 'pointer'}} data-tooltip="">
+                                                    <Box sx={{...propertyValuesCss, cursor: 'pointer'}}>
                                                         <AirbnbIcon />
                                                         <span style={{ marginLeft: '5px', }}>ABnB</span>
                                                     </Box>
