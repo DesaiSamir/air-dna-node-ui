@@ -1,7 +1,11 @@
 {
     "verbose": true,
-    "ignore": ["*.json", "data/*"],
+    "ignore": [
+        "*.json", 
+        "data/*", 
+        "client/node_modules/*"],
     "watch": [
-      	"server/*"
+      	"server/*",
+        "client/*"
     ]
 }

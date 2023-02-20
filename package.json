@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "concurrently -k \"npm run server\" \"npm run client\"",
+    "start": "concurrently -k \"yarn server\" \"yarn client\"",
     "prod": "node -r dotenv/config ./server/app.js",
     "server": "nodemon -r dotenv/config ./server/app.js",
     "debug": "node -r dotenv/config ./server/app.js",
