@@ -91,7 +91,7 @@ export default function PropertyDetails() {
                                     sx={{
                                         '&:hover': { boxShadow: 'md', borderColor: 'neutral.outlinedHoverBorder' },
                                     }}
-                                    >
+                                >
                                     <Box
                                         sx={{
                                             display: 'flex',

@@ -1,13 +1,12 @@
-# Trading companion for Tradestation
-
-> Currently this only works with TRADESTATION
-
-Tradingapp is an idea that will allow user to find patterns and create custom logic to take some trades.
+# Get calculated stats from AirDNA
 
 ```bash
 # with npm
 # install server dependencies at root 
+npm install
+
 # install client dependencies in "clinet" folder
+cd client/
 npm install
 
 
@@ -17,38 +16,30 @@ yarn install
 
 ## Usage
 
-You'll need Tradeshtation `client_id` and `secret` for you to use this application.
+You'll need AirDNA `ACCESS_TOKEN`for you to use this application.
 
-Rename a sample `.env.example` file to `.env` file in the root directory of your project. Add your `client_id` and `secret` in the fields below to use this APIs.
+Rename a sample `.env.example` file to `.env` file in the root directory of your project. Add your `ACCESS_TOKEN` in the fields below to use this APIs.
 
 For example:
 
 ```dosini
-TS_CLIENT_ID="<TS_CLIENT_ID>"
-TS_CLIENT_SECRET="<TS_CLIENT_SECRET>"
-```
-
-Alphavantage does not work because of rate limiting...
-
-~~If you want to use AlphaVantage APIs add a key for that in the `.env` file. If you don't have a key get it from https://www.alphavantage.co/support/#api-key~~
-
-```dosini
-ALPHA_ADVANTAGE_KEY="<ALPHA_ADVANTAGE_KEY>" 
+ACCESS_TOKEN="<ACCESS_TOKEN>"
 ```
 
 `process.env` now has the keys and values you defined in your `.env` file and these are loaded in `config.js` file present in the `./server` directory. You can see in the below example by default the `base_url` is set to simulated account. 
 
 ```javascript
-ts: {
-    client_id: process.env.TS_CLIENT_ID,
-    client_secret: process.env.TS_CLIENT_SECRET,
-    base_url: process.env.TS_BASE_URL_SIM,
-    base_url_sim: process.env.TS_BASE_URL_SIM,
-    base_url_live: process.env.TS_BASE_URL_LIVE,
-    cookie_secret: process.env.COOKIE_SECRET,
-    api_callback: process.env.API_CALLBACK,
-    session_data: null
-  }
+// Constants
+module.exports = {
+    port: process.env.PORT || 3003,
+    // if you're not using docker-compose for local development, this will default to 8080
+    // to prevent non-root permission problems with 80. Dockerfile is set to make this 80
+    // because containers don't have that issue :)
+    base_url_legacy: process.env.BASE_URL_LEGACY,
+    base_url_v1: process.env.BASE_URL_V1,
+    base_url_v2: process.env.BASE_URL_V2,
+    access_token: process.env.ACCESS_TOKEN
+};
 ```
 
 ## Usage
