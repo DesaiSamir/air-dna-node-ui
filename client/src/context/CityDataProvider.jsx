@@ -1,21 +1,22 @@
 import { useState, useEffect } from "react";
-import { CityDataContext } from "./CityDataContext";
+import { CityDataContext, cityInfo } from "./CityDataContext";
 const http = require("../utils/http");
 
 function CityDataProvider({ children }){
-    const [cityId, setCityId] = useState(null);
+    const [cityId, setCityId] = useState(76953);
     const [cityName, setCityName] = useState(null);
-    const [selectedCity, setSelectedCity] = useState(null);
+    const [selectedCity, setSelectedCity] = useState(cityInfo);
     const [selectedProperty, setSelectedProperty] = useState(null);
     const [stateName, setStateName] = useState(null);
     const [activeListings, setActiveListings] = useState(null);
-    const [areaInfo, setAreaInfo] = useState(null);    
+    const [areaInfo, setAreaInfo] = useState(null);
+    const [neighborCities, setNeighborCities] = useState(null);
     const [areaLookup, setAreaLookup] = useState(null);
     const [overview, setOverview] = useState(null);
     const [propertyList, setPropertyList] = useState(null);
     const [propertyMetrics, setPropertyMetrics] = useState(null);
-    const [search, setSearch] = useState(false);
-    const [topPropertyManagers, setTopPropertyManagers] = useState(false);
+    const [search, setSearch] = useState(null);
+    const [topPropertyManagers, setTopPropertyManagers] = useState(null);
     const [propertyFilter, setPropertyFilter] = useState({
         minPrice: 0,
         maxPrice: 1000,
@@ -28,7 +29,7 @@ function CityDataProvider({ children }){
     });
     const [filteredProperties, setFilteredProperties] = useState(null);
     const [propertySort, setPropertySort] = useState("adr");
-    const [propertiesLoading, setPropertiesLoading] = useState(false);
+    const [propertiesLoading, setPropertiesLoading] = useState(null);
     
     useEffect(() => {
         if(cityId){
@@ -36,6 +37,8 @@ function CityDataProvider({ children }){
             http.getActiveListings(cityId, setActiveListings);
             setAreaInfo(null);
             http.getAreaInfo(cityId, setAreaInfo);
+            setNeighborCities(null);
+            http.getNeighborCities(cityId, setNeighborCities);
             setOverview(null);
             http.getOverview(cityId, setOverview);
             let payload = {
@@ -150,6 +153,7 @@ function CityDataProvider({ children }){
             filteredProperties, 
             setFilteredProperties,
             propertiesLoading,
+            neighborCities,
         }}>
             {children}
         </CityDataContext.Provider>

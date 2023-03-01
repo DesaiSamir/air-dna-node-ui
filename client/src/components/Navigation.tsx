@@ -1,23 +1,10 @@
 import * as React from 'react';
-import { Box, Sheet, Typography, Divider, Card, Chip} from '@mui/joy';
+import { Box, Sheet, Typography, Divider, Chip, Button} from '@mui/joy';
 import { CityDataContext } from '../context/CityDataContext';
-// import IconButton from '@mui/joy/IconButton';
-// import List from '@mui/joy/List';
-// import ListSubheader from '@mui/joy/ListSubheader';
-// import ListItem from '@mui/joy/ListItem';
-// import ListItemButton from '@mui/joy/ListItemButton';
-// import ListItemDecorator from '@mui/joy/ListItemDecorator';
-// import ListItemContent from '@mui/joy/ListItemContent';
-
-// // Icons import
-// import FolderOpenIcon from '@mui/icons-material/FolderOpen';
-// import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
-// import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
-// import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
 export default function Navigation() {
 	const { 
-        selectedCity, topPropertyManagers,
+        selectedCity, topPropertyManagers, neighborCities, setCityId, setSelectedCity
     } = React.useContext(CityDataContext);
 
 	return (
@@ -49,12 +36,7 @@ export default function Navigation() {
                 </Typography>
             </Box>
             <Divider />
-            <Box 
-                sx={{
-                    height: 'calc(100vh - 145px)', 
-                    overflowY: 'auto',
-                }}
-            >
+            <Box>
                 <Sheet 
                     variant="outlined"
                     sx={{ 
@@ -66,7 +48,6 @@ export default function Navigation() {
                         borderColor: 'neutral.outlinedBorder',
                     }} 
                 >
-                    { topPropertyManagers && 
                     <>
                         <Box 
                             sx={{ 
@@ -88,9 +69,10 @@ export default function Navigation() {
                                 display: 'flex',
                                 flexDirection: 'column',
                                 gap: 0.5,
+                                height: 145,
                             }}
                         >
-                            {topPropertyManagers.map((manager, index) => (
+                            {topPropertyManagers && topPropertyManagers.map((manager, index) => (
                                <Box 
                                     key = {index}
                                     sx={{
@@ -111,9 +93,8 @@ export default function Navigation() {
                             ))}
                         </Box>
                     </>
-                    }
                 </Sheet>
-                {/* <Sheet 
+                <Sheet 
                     variant="outlined"
                     sx={{ 
                         borderRadius: 'sm',
@@ -139,11 +120,54 @@ export default function Navigation() {
                                 fontWeight: 'bold',
                             }}
                         >
-                            Rental Growth
+                            Neighbor Cities
                         </Typography>
                     </Box>
                     <Divider />
-                </Sheet> */}
+                    <Box
+                        sx={{
+                            height: 'calc(100vh - 423px)', 
+                            overflowY: 'auto',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: 0.5,
+                            p: 0.5,
+                        }}
+                    >
+                        { neighborCities && neighborCities.sort((a, b) => a.code.city.localeCompare(b.code.city)).map((neighbor) =>
+                            <Button 
+                                fullWidth 
+                                key = {neighbor.id}
+                                variant="outlined"
+                                onClick={() => {
+                                    setCityId(neighbor.id)
+                                    setSelectedCity({
+                                        name: `${neighbor.name.city}, ${neighbor.name.state}`,
+                                        type: "city",
+                                        country: {
+                                            code: neighbor.code.country,
+                                            name: neighbor.name.country
+                                        },
+                                        state: {
+                                            code: neighbor.code.state,
+                                            name: neighbor.name.state
+                                        },
+                                        city: {
+                                            id: neighbor.id,
+                                            code: neighbor.code.city,
+                                            name: neighbor.name.city
+                                        },
+                                        region: null
+                                    })
+                                }}
+                            >
+                                <Typography >
+                                    {neighbor.name.city}, {neighbor.name.state}
+                                </Typography>
+                            </Button>
+                        )}
+                    </Box>
+                </Sheet>
             </Box>
             
         </Sheet>

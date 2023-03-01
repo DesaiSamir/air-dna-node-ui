@@ -59,6 +59,27 @@ module.exports = {
             },
         ]
     },
+    neighbor_cities: {
+        url: `${config.base_url_v2}/account/area_info_legacy?access_token=${config.access_token}`,
+        query: [
+            {
+                name: 'city_id',
+                default: 76953
+            },
+            {
+                name: 'show_geom',
+                default: false
+            },
+            {
+                name: 'region_type',
+                default: false
+            },
+            {
+                name: 'neighbor_cities',
+                default: true
+            },
+        ]
+    },
     overview: {
         url: `${config.base_url_legacy}/market/overview?access_token=${config.access_token}`,
         query: [

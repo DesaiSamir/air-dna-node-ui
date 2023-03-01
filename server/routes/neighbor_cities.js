@@ -9,11 +9,11 @@ router.get('/', async function  (req, res, next)  {
             message: 'Missing query parameter "city_id".'
         }) 
     } else {
-        const url = `${endpoints.area_info.url}&city_id=${req.query.city_id}&region_type=all&neighbor_cities=false`;
+        const url = `${endpoints.area_info.url}&city_id=${req.query.city_id}&neighbor_cities=true`;
         const result = await helper.send(req, res, 'GET', url);
         
         if(result){
-            res.send(result);
+            res.send(result.neighbor_cities);
         } else {
             res.send([])
         }

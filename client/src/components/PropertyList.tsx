@@ -83,7 +83,7 @@ export default function PropertyList() {
                     <Box 
                         sx={{
                             display: 'grid',
-                            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+                            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
                             gap: 2,
                             height: 'calc(100vh - 302px)', 
                             overflowY: 'auto'
@@ -118,7 +118,7 @@ export default function PropertyList() {
                                         flexGrow: 0,
                                         flexDirection: 'row',
                                         alignItems: 'end',
-                                        height: '140px',
+                                        height: '170px',
                                         background: `${mode === 'light' ? 'rgb(250 250 250 / 50%)' : 'rgb(0 0 0 / 50%)'}`,
                                     }}
                                 >
@@ -130,73 +130,88 @@ export default function PropertyList() {
                                             rel="noopener noreferrer" 
                                             underline='none'
                                         >
-                                            <Typography sx={{ fontWeight: 'bold', '&:hover': {fontSize: 'large'} }}>{property.title}</Typography>
+                                            <Typography sx={{ fontWeight: 'bold', }}>{property.title}</Typography>
                                         </Link>
-                                        <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', marginTop:'5px'}}>
-                                            <Tooltip title="Yearly Revenue" arrow variant="solid">
-                                                <Box sx={propertyValuesCss}>
-                                                    <MoneyIcon />
-                                                    <span style={{ marginLeft: '5px', }}>{property.revenue ? toLocaleString(property.revenue) : 0}</span>
-                                                </Box>
-                                            </Tooltip>
-                                            <Tooltip title="AirBnB Link" arrow variant="solid">
-                                                <Link
-                                                    sx={{textAlign: 'center'}} 
-                                                    href={getAirBnbListUrl(property.platforms.airbnb_property_id)} 
-                                                    target="_blank" 
-                                                    rel="noopener noreferrer" 
-                                                    underline='none'
-                                                >
-                                                    <Box sx={{...propertyValuesCss, cursor: 'pointer'}}>
-                                                        <AirbnbIcon />
-                                                        <span style={{ marginLeft: '5px', }}>ABnB</span>
-                                                    </Box>
-                                                </Link>
-                                            </Tooltip>
-                                            <Tooltip title="Vrbo Link" arrow variant="solid">
-                                                <Link
-                                                    sx={{textAlign: 'center'}} 
-                                                    href={getVerboListUrl(property.platforms.homeaway_property_id)} 
-                                                    target="_blank" 
-                                                    rel="noopener noreferrer" 
-                                                    underline='none'
-                                                >
-                                                    <Box sx={{...propertyValuesCss, cursor: 'pointer'}}>
-                                                        <VerboIcon />
-                                                        <span style={{ marginLeft: '5px', }}>Verbo</span>
-                                                    </Box>
-                                                </Link>
-                                            </Tooltip>
-                                            <Tooltip title="Occupancy Rate" arrow variant="solid">
-                                                <Box sx={propertyValuesCss}>
-                                                    <GroupsIcon />
-                                                    <span style={{ marginLeft: '5px', }}>{property.occ ? `${property.occ}%` : 0}</span>
-                                                </Box>
-                                            </Tooltip>
-                                        </Box>
-                                        <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', marginTop:'5px'}}>
+                                        <Box 
+                                            sx={{ 
+                                                display: 'flex', 
+                                                flexDirection: 'row', 
+                                                flexWrap: 'wrap', 
+                                                alignItems: 'center', 
+                                                justifyContent: 'space-evenly', 
+                                                marginTop:'5px'
+                                            }}
+                                        >
                                             {[
-                                                { icon: <DollarIcon />, value: toLocaleString(property.adr), tooltip: 'Average Daily Rate' },
-                                                { icon: <BedIcon />, value: property.bedrooms, tooltip: 'Bedrooms' },
-                                                { icon: <BathtubIcon />, value: property.bathrooms, tooltip: 'Bathrooms' },
-                                                { icon: <PeopleIcon />, value: property.accommodates, tooltip: 'Accommodates' },
-                                                { icon: <StarIcon />, value: property.rating, tooltip: 'Rating' },
+                                                { 
+                                                    icon: <MoneyIcon />, 
+                                                    value: property.revenue ? toLocaleString(property.revenue) : 0, 
+                                                    tooltip: 'Yearly Revenue'
+                                                },
+                                                {
+                                                    icon: <AirbnbIcon />,
+                                                    value: 'ABnB',
+                                                    tooltip: 'AirBnB Link',
+                                                    href: getAirBnbListUrl(property.platforms.airbnb_property_id)
+                                                },
+                                                {
+                                                    icon: <VerboIcon />,
+                                                    value: 'Vrbo',
+                                                    tooltip: 'Vrbo Link',
+                                                    href: getVerboListUrl(property.platforms.homeaway_property_id)
+                                                },
+                                                {
+                                                    icon: <GroupsIcon />,
+                                                    value: property.occ ? `${property.occ}%` : 0,
+                                                    tooltip: 'Occupancy Rate'
+                                                },
+                                                { 
+                                                    icon: <DollarIcon />, 
+                                                    value: toLocaleString(property.adr), 
+                                                    tooltip: 'Average Daily Rate'
+                                                },
+                                                {
+                                                    icon: <BedIcon />,
+                                                    value: property.bedrooms,
+                                                    tooltip: 'Bedrooms'
+                                                },
+                                                {
+                                                    icon: <BathtubIcon />,
+                                                    value: property.bathrooms,
+                                                    tooltip: 'Bathrooms'
+                                                },
+                                                {
+                                                    icon: <PeopleIcon />,
+                                                    value: property.accommodates,
+                                                    tooltip: 'Accommodates'
+                                                },
+                                                {
+                                                    icon: <StarIcon />,
+                                                    value: property.rating ? property.rating : 0,
+                                                    tooltip: 'Rating'
+                                                },
+                                                {
+                                                    icon: <ReviewsIcon />,
+                                                    value: property.reviews ? property.reviews : 0,
+                                                    tooltip: 'Reviews',
+                                                    href: getAirBnbListUrl(property.platforms.airbnb_property_id)
+                                                }
                                             ].map((item) => (
                                                 <Tooltip title={item.tooltip} arrow variant="solid" key={item.tooltip}>
-                                                    <Box sx={propertyValuesCss}>
-                                                        {item.icon} 
-                                                        <span style={{ marginLeft: '1px', }}>{item.value ? item.value : 0}</span>
-                                                    </Box>
+                                                    <Link
+                                                        sx={{textAlign: 'center'}} 
+                                                        href={item.href} 
+                                                        target="_blank" 
+                                                        rel="noopener noreferrer" 
+                                                        underline='none'
+                                                    >
+                                                        <Box sx={{...propertyValuesCss, cursor: `${item.href ? 'pointer' : 'default'}`}}>
+                                                            {item.icon} 
+                                                            <span style={{ marginLeft: '5px', }}>{item.value}</span>
+                                                        </Box>
+                                                    </Link>
                                                 </Tooltip>
                                             ))}
-                                            <Tooltip title="Reviews" arrow variant="solid">
-                                                <Link href={getAirBnbListUrl(property.platforms.airbnb_property_id)} target="_blank" rel="noopener noreferrer" underline='none'>
-                                                    <Box sx={{...propertyValuesCss, cursor: 'pointer'}}>
-                                                        <ReviewsIcon />
-                                                        <span style={{ marginLeft: '1px', }}>{property.reviews ? property.reviews : 0}</span>
-                                                    </Box>
-                                                </Link>
-                                            </Tooltip>
                                         </Box>
                                     </Box>
                                 </CardContent>

@@ -1,3 +1,4 @@
+import { neighborCitiesType } from "./neighborCitiesType"
 import { propertyFilterType } from "./propertyFilterType"
 import { propertiesType, propertyListType } from "./propertyListType"
 import { propertyManagersType } from "./propertyManagersType"
@@ -33,10 +34,11 @@ export type CityDataContextType = {
     onCityNameChanged: (e: object) => void
     
     propertyFilter: propertyFilterType, 
-    setPropertyFilter: (e: undefined | null | propertyFilterType) => void, 
+    setPropertyFilter: (e: undefined | null | propertyFilterType) => void
     propertySort: string
     setPropertySort: (e: string) => void
     filteredProperties: propertyListType 
     setFilteredProperties: (e: undefined | null | propertyListType) => void
     propertiesLoading: boolean
+    neighborCities: neighborCitiesType[]
 }

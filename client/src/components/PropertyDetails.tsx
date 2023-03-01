@@ -12,6 +12,12 @@ export default function PropertyDetails() {
         selectedProperty
     } = React.useContext(CityDataContext);
 
+    const [photoSelected, setPhotoSelected] = React.useState<boolean>(true);
+
+    const handleSelectView = (view: boolean) => {
+        setPhotoSelected(view);
+    }
+
     const selectedPropertyData = selectedProperty && [
         { label: 'Avg Daily Rate', value: `${toLocaleString(selectedProperty.adr)} * 80% = ${toLocaleString(selectedProperty.adr * 0.8)}`},
         { label: 'Real Estate Type', value: selectedProperty.real_estate_type },
@@ -57,17 +63,50 @@ export default function PropertyDetails() {
             </Box>
             <Divider />
             <Box sx={{ display: 'flex' }}>
-                <Button variant="soft" sx={{ borderRadius: 0, borderBottom: '2px solid', borderColor: 'primary.solidBg', flex: 1, py: '1rem', }} >
+                <Button 
+                    variant="plain" 
+                    sx={{  
+                            borderRadius: 0, 
+                            flex: 1, 
+                            py: '1rem',
+                            borderBottom: `${photoSelected ? '2px solid' : ''}`,
+                            borderColor: `${photoSelected ? 'neutral.outlinedBorder' : ''}`,
+                        }} 
+                    onClick={() => handleSelectView(true)}
+                >
                     Details
                 </Button>
-                <Button variant="plain" color="neutral" sx={{ borderRadius: 0, flex: 1, py: '1rem' }} >
+                <Button 
+                    variant="plain" 
+                    color="neutral" 
+                    sx={{ 
+                        borderRadius: 0, 
+                        flex: 1, 
+                        py: '1rem',
+                        borderBottom: `${!photoSelected ? '2px solid' : ''}`,
+                        borderColor: `${!photoSelected ? 'neutral.outlinedBorder' : ''}`,
+                    }} 
+                    onClick={() => handleSelectView(false)}
+                >
                     Activity
                 </Button>
             </Box>
-            <AspectRatio ratio="21/9">
-                <img alt="" src={selectedProperty && selectedProperty.img_cover} />
-            </AspectRatio>
-            <Box sx={{ p: 2, display: 'flex', gap: 1, alignItems: 'center' }} />
+            <Box sx={{ p: 2, height: 197 }} >
+                { photoSelected 
+                    ? 
+                        (<Box id="image-box">
+                            <AspectRatio ratio="21/9">
+                                <img alt="" src={selectedProperty && selectedProperty.img_cover} />
+                            </AspectRatio>
+                        </Box>)
+                    :
+                        (<Box id="map-box">
+                            <Typography level="h2" fontSize="md" >
+                                Map goes here
+                            </Typography>
+                        </Box>)
+                }
+            </Box>
             <Divider />
             <Box
                 sx={{
