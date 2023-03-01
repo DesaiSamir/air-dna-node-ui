@@ -22,6 +22,13 @@ module.exports = {
             cb(result);
         }
     },
+    getNeighborCities: async function(city_id, cb) {
+        const result = await this.get(`api/neighbor_cities?city_id=${city_id}`, cb);
+
+        if(result){
+            cb(result);
+        }
+    },
     getOverview: async function(city_id, cb){
         const result = await this.get(`api/overview?city_id=${city_id}`);
 

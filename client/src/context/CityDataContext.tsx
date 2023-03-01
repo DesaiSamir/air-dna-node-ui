@@ -1,23 +1,23 @@
 import { createContext, useContext } from "react"
 import { CityDataContextType } from "../types/CityDataContextType"
 
-const cityInfo = {
-    "name": "Stra, Veneto, Italy",
-    "type": "city",
-    "country": {
-        "code": "it",
-        "name": "Italy"
+export const cityInfo = {
+    name: "East Stroudsburg, Pennsylvania",
+    type: "city",
+    country: {
+        code: "us",
+        name: "United States"
     },
-    "state": {
-        "code": "veneto",
-        "name": "Veneto"
+    state: {
+        code: "pennsylvania",
+        name: "Pennsylvania"
     },
-    "city": {
-        "id": 52088,
-        "code": "stra",
-        "name": "Stra"
+    city: {
+        id: 52088,
+        code: "east-stroudsburg",
+        name: "East Stroudsburg"
     },
-    "region": null
+    region: null
 }
 
 const propertyInfo = {
@@ -69,6 +69,21 @@ const propertyManagers = {
     total_listings: 30,
     total_reviews: 577
 };
+
+const neighborCities = {
+    id: 78140,
+    code: {
+        city: "wrightsville",
+        state: "pennsylvania",
+        country: "us"
+    },
+    name: {
+        city: "Wrightsville",
+        state: "Pennsylvania",
+        country: "United States"
+    },
+};
+
 export const CityDataContext = createContext<CityDataContextType>({
     cityId: 76953,
     setCityId: () =>{},
@@ -96,5 +111,6 @@ export const CityDataContext = createContext<CityDataContextType>({
     setFilteredProperties: () => {},
     propertiesLoading: false,
     topPropertyManagers: [propertyManagers],
+    neighborCities: [neighborCities],
 });
 export const useGlobalContext = () => useContext(CityDataContext)
