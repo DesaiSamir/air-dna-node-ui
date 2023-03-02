@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const helper = require('../utils/helpers');
 const endpoints = require('../utils/endpoints');
+const config = require('../config');
 
 router.post('/', async function (req, res, next)  {
 
@@ -17,6 +18,7 @@ router.post('/', async function (req, res, next)  {
             let adr = Math.round(property.adr * 0.8);
             property.revenue = adr * days_available;
             property.occ = ((days_available / 365) * 100).toFixed(2);
+            property.map_url =`https://www.google.com/maps/embed/v1/place?key=${config.google_map_key}&q=${property.latitude},${property.longitude}&zoom=18&maptype=satellite`;
         });
         res.send(result.properties);
     }

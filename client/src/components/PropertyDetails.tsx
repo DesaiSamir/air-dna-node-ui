@@ -65,6 +65,7 @@ export default function PropertyDetails() {
             <Box sx={{ display: 'flex' }}>
                 <Button 
                     variant="plain" 
+                    color={photoSelected ? 'primary' : 'neutral'}
                     sx={{  
                             borderRadius: 0, 
                             flex: 1, 
@@ -74,11 +75,11 @@ export default function PropertyDetails() {
                         }} 
                     onClick={() => handleSelectView(true)}
                 >
-                    Details
+                    Photo
                 </Button>
                 <Button 
                     variant="plain" 
-                    color="neutral" 
+                    color={!photoSelected ? 'primary' : 'neutral'}
                     sx={{ 
                         borderRadius: 0, 
                         flex: 1, 
@@ -88,29 +89,36 @@ export default function PropertyDetails() {
                     }} 
                     onClick={() => handleSelectView(false)}
                 >
-                    Activity
+                    Location
                 </Button>
             </Box>
-            <Box sx={{ p: 2, height: 197 }} >
+            <Box sx={{ p: 2, height: 297 }} >
                 { photoSelected 
                     ? 
                         (<Box id="image-box">
-                            <AspectRatio ratio="21/9">
+                            <AspectRatio ratio="16/11">
                                 <img alt="" src={selectedProperty && selectedProperty.img_cover} />
                             </AspectRatio>
                         </Box>)
                     :
                         (<Box id="map-box">
-                            <Typography level="h2" fontSize="md" >
-                                Map goes here
-                            </Typography>
+                            <iframe
+                                title='mapbox'
+                                width='100%'
+                                height='265px'
+                                style={{ border: 2 }}
+                                loading='lazy'
+                                allowFullScreen
+                                referrerPolicy='no-referrer-when-downgrade'
+                                src={selectedProperty.map_url}
+                            />
                         </Box>)
                 }
             </Box>
             <Divider />
             <Box
                 sx={{
-                    height: 'calc(100vh - 395px)', 
+                    height: 'calc(100vh - 495px)', 
                     overflowY: 'auto'
                 }}
             >

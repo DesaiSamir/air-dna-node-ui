@@ -18,7 +18,7 @@ export type propertiesType = {
     bathrooms: number
     bedrooms: number
     accommodates: number
-    lattitude: number
+    latitude: number
     longitude: number
     reviews: number
     real_estate_type: string
@@ -30,6 +30,7 @@ export type propertiesType = {
     days_available: number
     revenue: number
     occ: string
+    map_url: string
 }
 
 export type propertyListType = propertiesType[]

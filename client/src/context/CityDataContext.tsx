@@ -33,7 +33,7 @@ const propertyInfo = {
     bathrooms: 0,
     bedrooms: 0,
     accommodates: 0,
-    lattitude: 0,
+    latitude: 0,
     longitude: 0,
     property_type: "",
     real_estate_type: "",
@@ -48,6 +48,7 @@ const propertyInfo = {
     days_available: 0,
     revenue: 0,
     occ: "0",
+    map_url: "",
 }
 
 const propertyFilterData = {
