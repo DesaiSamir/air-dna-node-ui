@@ -1,7 +1,6 @@
 const request = require('request');
 const fetch = require('node-fetch');
 const config = require('../config');
-// const db = require('./db_access');
 
 module.exports = {
     get: async function(req, res, url) {
@@ -49,42 +48,42 @@ module.exports = {
                 });
                 break;
 
-            case 'PUT':
-                payload = JSON.stringify(payload);
-                const putPayloadLen = payload.length;
-                // console.log({method:'PUT', url, payload});
-                res = await fetch(`${ts.base_url}${url}`, {
-                    method: "PUT",
-                    headers: {
-                        Authorization: `bearer ${req.session.access_token}`,
-                        "Content-Type": "application/json; charset=utf-8",
-                        'Accept': 'application/vnd.tradestation.streams+json',
-                        "Content-Length": putPayloadLen
-                    },
-                    body: payload
-                })
-                .then(response => response.json())
-                .then((json) => {
-                    return json;
-                });
-                break;
+            // case 'PUT':
+            //     payload = JSON.stringify(payload);
+            //     const putPayloadLen = payload.length;
+            //     // console.log({method:'PUT', url, payload});
+            //     res = await fetch(`${ts.base_url}${url}`, {
+            //         method: "PUT",
+            //         headers: {
+            //             Authorization: `bearer ${req.session.access_token}`,
+            //             "Content-Type": "application/json; charset=utf-8",
+            //             'Accept': 'application/vnd.tradestation.streams+json',
+            //             "Content-Length": putPayloadLen
+            //         },
+            //         body: payload
+            //     })
+            //     .then(response => response.json())
+            //     .then((json) => {
+            //         return json;
+            //     });
+            //     break;
 
-            case 'DELETE':
-                payload = JSON.stringify(payload);
-                // console.log({method:'DELETE', url, payload});
-                res = await fetch(`${ts.base_url}${url}`, {
-                    method: "DELETE",
-                    headers: {
-                        Authorization: `bearer ${req.session.access_token}`,
-                        "Content-Type": "application/json; charset=utf-8",
-                        'Accept': 'application/vnd.tradestation.streams+json'
-                    }
-                })
-                .then(response => response.json())
-                .then((json) => {
-                    return json;
-                });
-                break;
+            // case 'DELETE':
+            //     payload = JSON.stringify(payload);
+            //     // console.log({method:'DELETE', url, payload});
+            //     res = await fetch(`${ts.base_url}${url}`, {
+            //         method: "DELETE",
+            //         headers: {
+            //             Authorization: `bearer ${req.session.access_token}`,
+            //             "Content-Type": "application/json; charset=utf-8",
+            //             'Accept': 'application/vnd.tradestation.streams+json'
+            //         }
+            //     })
+            //     .then(response => response.json())
+            //     .then((json) => {
+            //         return json;
+            //     });
+            //     break;
 
             default:
                 break;

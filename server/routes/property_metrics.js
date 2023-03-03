@@ -9,14 +9,14 @@ router.get('/', async function  (req, res, next)  {
             message: 'Missing query parameter "city_id".'
         }) 
     } else {
-        const url = `${endpoints.property_metrics.url.replace(':city_id', req.query.city_id)}`;
-        const result = await helper.send(req, res, 'GET', url);
+        // const url = `${endpoints.property_metrics.url.replace(':city_id', req.query.city_id)}`;
+        // const result = await helper.send(req, res, 'GET', url);
         
-        if(result){
-            res.send(result);
-        } else {
+        // if(result){
+        //     res.send(result);
+        // } else {
             res.send([])
-        }
+        // }
     }
 });
 
