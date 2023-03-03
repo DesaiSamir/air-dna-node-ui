@@ -121,3 +121,4 @@ yarn-error.log*
 package-lock.json
 .npm
 client/*.lock
+client/build/
