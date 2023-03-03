@@ -69,10 +69,10 @@ export default function Navigation() {
                                 display: 'flex',
                                 flexDirection: 'column',
                                 gap: 0.5,
-                                height: 145,
+                                height: 155,
                             }}
                         >
-                            {topPropertyManagers && topPropertyManagers.map((manager, index) => (
+                            {topPropertyManagers && topPropertyManagers.sort((a,b) => b.avg_rating - a.avg_rating).map((manager, index) => (
                                <Box 
                                     key = {index}
                                     sx={{
@@ -84,10 +84,18 @@ export default function Navigation() {
                                     <Chip
                                         variant="outlined"
                                         color="primary"
-                                        size="sm"
+                                        size="md"
                                         sx={{ pointerEvents: 'none' }}
+                                        startDecorator={
+                                            <Chip
+                                                size="sm"
+                                                sx={{ pointerEvents: 'none' }}
+                                                startDecorator={`${manager.avg_rating.toFixed(2)} ⭐️`}
+                                            />
+                                        }
                                     >
-                                        {manager.name}
+                                        
+                                        {`${manager.name}`} 
                                     </Chip>
                                 </Box>
                             ))}
@@ -126,7 +134,7 @@ export default function Navigation() {
                     <Divider />
                     <Box
                         sx={{
-                            height: 'calc(100vh - 423px)', 
+                            height: 'calc(100vh - 440px)', 
                             overflowY: 'auto',
                             display: 'flex',
                             flexDirection: 'column',
