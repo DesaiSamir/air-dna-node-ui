@@ -52,7 +52,7 @@ const crudData = async function(query, object) {
 		}
 		return null;
 	} catch (error) {
-		console.log({object, query, error});
+		console.log(error);
 	}
 };
 

@@ -1,6 +1,6 @@
 const request = require('request');
 const fetch = require('node-fetch');
-const config = require('../config');
+const urlParse = require('url-parse');
 // const db = require('./db_access');
 
 module.exports = {
@@ -13,10 +13,17 @@ module.exports = {
     },
 
     send: async function(req, res, method, url, payload = null) {
+        // Parse and validate the user input
+        const parsedUrl = urlParse(url);
+        if (!parsedUrl.host) {
+            throw new Error('Invalid URL');
+        }
+        const sanitizedUrl = parsedUrl.protocol + '//' + parsedUrl.host + parsedUrl.pathname + parsedUrl.query;
+
         var res;
         switch (method) {
             case 'GET':
-                res = await fetch(url
+                res = await fetch(sanitizedUrl
                 ).then(function (response) {
                     if (response.ok) {
                         return response.json();
@@ -36,7 +43,7 @@ module.exports = {
             case 'POST':
                 payload = JSON.stringify(payload);
                 // console.log({method:'POST', url, payload});
-                res = await fetch(url, {
+                res = await fetch(sanitizedUrl, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -53,7 +60,7 @@ module.exports = {
                 payload = JSON.stringify(payload);
                 const putPayloadLen = payload.length;
                 // console.log({method:'PUT', url, payload});
-                res = await fetch(`${ts.base_url}${url}`, {
+                res = await fetch(sanitizedUrl, {
                     method: "PUT",
                     headers: {
                         Authorization: `bearer ${req.session.access_token}`,
@@ -72,7 +79,7 @@ module.exports = {
             case 'DELETE':
                 payload = JSON.stringify(payload);
                 // console.log({method:'DELETE', url, payload});
-                res = await fetch(`${ts.base_url}${url}`, {
+                res = await fetch(sanitizedUrl, {
                     method: "DELETE",
                     headers: {
                         Authorization: `bearer ${req.session.access_token}`,
