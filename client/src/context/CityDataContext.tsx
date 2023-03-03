@@ -54,13 +54,16 @@ const propertyInfo = {
 const propertyFilterData = {
         minPrice: 0,
         maxPrice: 1000,
-        maxSelectedPrice:1000,
+        maxSelectedPrice: 1000,
         minBedrooms: 0,
         maxBedrooms: 10,
+        maxSelectedBedrooms: 10,
         minBathrooms: 0,
         maxBathrooms: 10,
+        maxSelectedBathrooms: 10,
         minOccupancy: 0,
         maxOccupancy: 20,
+        maxSelectedOccupancy: 20,
     }
 
 const propertyManagers = {
