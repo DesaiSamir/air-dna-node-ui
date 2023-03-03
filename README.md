@@ -23,7 +23,16 @@ Rename a sample `.env.example` file to `.env` file in the root directory of your
 For example:
 
 ```dosini
-ACCESS_TOKEN="<ACCESS_TOKEN>"
+ACCESS_TOKEN="<AIRDNA_ACCESS_TOKEN>"
+```
+
+Additionally, we are using Google Map Embed API. For that feature to work you will need to create a [Google API Key](https://developers.google.com/maps/documentation/embed/get-api-key) and add that in the `.env` file.
+
+
+For example:
+
+```dosini
+GOOGLE_MAP_KEY="<GOOGLE_MAP_API_KEY>"
 ```
 
 `process.env` now has the keys and values you defined in your `.env` file and these are loaded in `config.js` file present in the `./server` directory. You can see in the below example by default the `base_url` is set to simulated account. 
@@ -38,7 +47,8 @@ module.exports = {
     base_url_legacy: process.env.BASE_URL_LEGACY,
     base_url_v1: process.env.BASE_URL_V1,
     base_url_v2: process.env.BASE_URL_V2,
-    access_token: process.env.ACCESS_TOKEN
+    access_token: process.env.ACCESS_TOKEN,
+    google_map_key: process.env.GOOGLE_MAP_KEY,
 };
 ```
 
