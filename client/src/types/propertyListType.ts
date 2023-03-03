@@ -1,4 +1,4 @@
-type platformsType = {
+export type platformsType = {
     airbnb_property_id: number,
     homeaway_property_id: number,
 }
