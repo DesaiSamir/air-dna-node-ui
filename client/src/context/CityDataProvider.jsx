@@ -14,7 +14,7 @@ function CityDataProvider({ children }){
     const [areaLookup, setAreaLookup] = useState(null);
     const [overview, setOverview] = useState(null);
     const [propertyList, setPropertyList] = useState(null);
-    const [propertyMetrics, setPropertyMetrics] = useState(null);
+    // const [propertyMetrics, setPropertyMetrics] = useState(null);
     const [search, setSearch] = useState(null);
     const [topPropertyManagers, setTopPropertyManagers] = useState(null);
     const [propertyFilter, setPropertyFilter] = useState({
@@ -63,8 +63,8 @@ function CityDataProvider({ children }){
                 setPropertiesLoading(false);
             }
             http.getPropertyList(payload, setProperties);
-            setPropertyMetrics(null);
-            http.getPropertyMetrics(cityId, setPropertyMetrics);
+            // setPropertyMetrics(null);
+            // http.getPropertyMetrics(cityId, setPropertyMetrics);
             setTopPropertyManagers(null);
             http.getTopPropertyManagers(cityId, setTopPropertyManagers);
         }
@@ -142,7 +142,7 @@ function CityDataProvider({ children }){
             areaLookup, 
             overview, 
             propertyList, 
-            propertyMetrics,
+            // propertyMetrics,
             search , 
             setSearch, 
             topPropertyManagers, 
