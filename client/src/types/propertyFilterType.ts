@@ -5,8 +5,11 @@ export type propertyFilterType = {
     maxSelectedPrice: number,
     minBedrooms: number,
     maxBedrooms: number,
+    maxSelectedBedrooms: number,
     minBathrooms: number,
     maxBathrooms: number,
+    maxSelectedBathrooms: number,
     minOccupancy: number,
     maxOccupancy: number,
+    maxSelectedOccupancy: number,
 }

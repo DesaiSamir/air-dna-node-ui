@@ -37,16 +37,6 @@ module.exports = {
         }
     },
     getPropertyList: async function(payload, cb){
-        // Payload Sample
-        // {
-        //     "currency": "USD",
-        //     "filters": [
-        //         {
-        //         "type": "select",
-        //         "field": "zipcode", // type could be city_id or zipcode
-        //         "value": 19438
-        //         }]
-        // }
         const result = await this.send('POST','api/property_list', payload);
 
         if(result){

@@ -88,13 +88,16 @@ function CityDataProvider({ children }){
         setPropertyFilter({
             minPrice: 0,
             maxPrice,
-            maxSelectedPrice:maxPrice,
+            maxSelectedPrice: maxPrice,
             minBedrooms: 0,
             maxBedrooms,
+            maxSelectedBedrooms: maxBedrooms,
             minBathrooms: 0,
             maxBathrooms,
+            maxSelectedBathrooms: maxBathrooms,
             minOccupancy: 0,
             maxOccupancy,
+            maxSelectedOccupancy: maxOccupancy,
         });
     }, [propertyList])
 

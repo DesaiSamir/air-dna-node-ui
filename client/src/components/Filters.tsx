@@ -18,20 +18,20 @@ export default function Filters() {
         setFilteredProperties, setSelectedProperty,
     } = React.useContext(CityDataContext);
 
-    const handlePriceSliderChange = (event: any, newValue: any) => {
-        setPropertyFilter({...propertyFilter, minPrice: newValue[0], maxSelectedPrice: newValue[1]});
+    const handlePriceSliderChange = (event: any, prices: any) => {
+        setPropertyFilter({...propertyFilter, minPrice: prices[0], maxSelectedPrice: prices[1]});
     };
 
-    const handleBedroomChange = (event: any, newValue: any) => {
-        setPropertyFilter({...propertyFilter, minBedrooms: newValue});
+    const handleBedroomChange = (event: any, bedrooms: any) => {
+        setPropertyFilter({...propertyFilter, minBedrooms: bedrooms[0], maxSelectedBedrooms: bedrooms[1]});
     };
 
-    const handleBathroomChange = (event: any, newValue: any) => {
-        setPropertyFilter({...propertyFilter, minBathrooms: newValue});
+    const handleBathroomChange = (event: any, bathrooms: any) => {
+        setPropertyFilter({...propertyFilter, minBathrooms: bathrooms[0], maxSelectedBathrooms: bathrooms[1]});
     };
 
-    const handleOccupancyChange = (event: any, newOccupancy: any) => {
-        setPropertyFilter({...propertyFilter, minOccupancy: newOccupancy});
+    const handleOccupancyChange = (event: any, occupancy: any) => {
+        setPropertyFilter({...propertyFilter, minOccupancy: occupancy[0], maxSelectedOccupancy: occupancy[1]});
     }
 
     const handleSortChange = (event: any, value: any) => {
@@ -43,9 +43,9 @@ export default function Filters() {
         let filteredProperties = propertyList
             .filter(property => {
                 let isPriceInRange = (property.adr >= propertyFilter.minPrice && property.adr <= propertyFilter.maxSelectedPrice);
-                let isBedroomInRange = (property.bedrooms >= propertyFilter.minBedrooms);
-                let isBathroomInRange = (property.bathrooms >= propertyFilter.minBathrooms);
-                let isOccupancyInRange = (property.accommodates >= propertyFilter.minOccupancy);
+                let isBedroomInRange = (property.bedrooms >= propertyFilter.minBedrooms && property.bedrooms <= propertyFilter.maxSelectedBedrooms);
+                let isBathroomInRange = (property.bathrooms >= propertyFilter.minBathrooms && property.bathrooms <= propertyFilter.maxSelectedBathrooms);
+                let isOccupancyInRange = (property.accommodates >= propertyFilter.minOccupancy && property.accommodates <= propertyFilter.maxSelectedOccupancy);
                 return isPriceInRange && isBedroomInRange && isBathroomInRange && isOccupancyInRange;
         });
         if(filteredProperties){
@@ -103,7 +103,7 @@ export default function Filters() {
                         Occupancy
                     </Typography>
                     <Slider
-                        value={propertyFilter.minOccupancy}
+                        value={[propertyFilter.minOccupancy, propertyFilter.maxSelectedOccupancy]}
                         onChange={handleOccupancyChange}
                         valueLabelDisplay="auto"
                         min={0}
@@ -115,7 +115,7 @@ export default function Filters() {
                         Bedrooms
                     </Typography>
                     <Slider
-                        value={propertyFilter.minBedrooms}
+                        value={[propertyFilter.minBedrooms, propertyFilter.maxSelectedBedrooms]}
                         onChange={handleBedroomChange}
                         valueLabelDisplay="auto"
                         min={0}
@@ -127,7 +127,7 @@ export default function Filters() {
                         Bathrooms
                     </Typography>
                     <Slider
-                        value={propertyFilter.minBathrooms}
+                        value={[propertyFilter.minBathrooms, propertyFilter.maxSelectedBathrooms]}
                         onChange={handleBathroomChange}
                         valueLabelDisplay="auto"
                         min={0}

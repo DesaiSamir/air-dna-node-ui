@@ -5,7 +5,8 @@ import { CityDataContext } from '../context/CityDataContext';
 import { Link, } from '@mui/material';
 
 import Filters from './Filters';
-import { getAirBnbListUrl, getVerboListUrl, toLocaleString } from '../utils/helper';
+import { getAirBnbListUrl, getListingUrl, getVerboListUrl, toLocaleString } from '../utils/helper';
+// import Helper from '../utils/helper';
 
 // Icons Import
 import BedIcon from '@mui/icons-material/Bed';
@@ -125,8 +126,8 @@ export default function PropertyList() {
                                     <Box sx={{ flex: 1, paddingBottom: 1 }}>
                                         <Link
                                             sx={{textAlign: 'center'}} 
-                                            href={getAirBnbListUrl(property.platforms.airbnb_property_id)} 
-                                            target="_blank" 
+                                            href={ getListingUrl(property.platforms)} 
+                                            target={getListingUrl(property.platforms) === '#' ? undefined : "_blank"} 
                                             rel="noopener noreferrer" 
                                             underline='none'
                                         >
@@ -201,7 +202,7 @@ export default function PropertyList() {
                                                     <Link
                                                         sx={{textAlign: 'center'}} 
                                                         href={item.href} 
-                                                        target="_blank" 
+                                                        target={item.href === '#' ? undefined : "_blank"}
                                                         rel="noopener noreferrer" 
                                                         underline='none'
                                                     >
