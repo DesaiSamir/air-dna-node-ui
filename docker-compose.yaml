@@ -1,12 +1,10 @@
 version: "3"
 services:
-  tradingapp:
-    build:
-      context: .
-      # target: development
+  airdna:
+    container_name: airdna
+    image: 192.168.1.32:5555/airdna
     ports:
-      - 5000:3000
-      - 3306:3306/tcp
+      - 30000:3000
     volumes:
       - .:/root
     networks:

@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 const config = require('./config');
 var morgan = require('morgan');
+const params = require('minimist')(process.argv);
 
 const indexRouter = require('./routes/index');
 const activeRouter = require('./routes/active');
@@ -20,6 +21,10 @@ const app = express();
 app.use(morgan('common'));
 
 const PORT = config.port;
+
+if (params.env === 'production') {
+	app.use(express.static('client/build'));
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

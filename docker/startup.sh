@@ -1,12 +1,12 @@
 #!/bin/bash
 
-echo "Starting mysql service..."
-chown -R mysql:mysql /var/lib/mysql
-service mysql start
+# echo "Starting mysql service..."
+# chown -R mysql:mysql /var/lib/mysql
+# service mysql start
 
-echo "Running DB Script..."
-# init mysql schema + data
-mysql -uroot < /root/docker/dbinit.sql
+# echo "Running DB Script..."
+# # init mysql schema + data
+# mysql -uroot < /root/docker/dbinit.sql
 
 echo "Installing app dependencies..."
 # install app dependencies 
