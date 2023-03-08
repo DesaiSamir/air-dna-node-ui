@@ -1,6 +1,4 @@
-const request = require('request');
 const fetch = require('node-fetch');
-const config = require('../config');
 
 module.exports = {
     get: async function(req, res, url) {
